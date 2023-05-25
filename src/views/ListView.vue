@@ -160,7 +160,7 @@ export default {
     methods: {
       loadMore($state){
         axios
-        .get('http://localhost:8082/login/api/hospital', {
+        .get('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/login/api/hospital', {
           params: {
             page: this.currentPage,
             size: this.pageSize,
@@ -183,7 +183,7 @@ export default {
       },
         getHospitalListData($state) {
             axios
-            .get('http://localhost:8082/login/api/hospital', {
+            .get('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/login/api/hospital', {
                 params: {
                     page: this.currentPage,
                     size: this.pageSize,
@@ -228,11 +228,13 @@ export default {
             this.showHospital = false;
             this.previewImage = '';
             axios
-            .get('http://localhost:8082/login/api/reservation/' + row.reservationIdx)
+            .get('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/login/api/reservation/' + row.reservationIdx)
             .then(response => {
               this.reservationResult = response.data;
               this.selectedDate = new Date(response.data.reservationDate);
-              this.symptomImage = 'http://localhost:8082/api/reservation' + this.reservationResult.image;
+              console.log(this.reservationResult.image);
+              this.symptomImage = 'https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/api/reservation' + this.reservationResult.image;
+             
             })
             .catch((error) => {
               console.log(error);
@@ -240,7 +242,7 @@ export default {
         },
         getReservationListData(){
             axios
-            .get('http://localhost:8082/login/api/reservation')
+            .get('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/login/api/reservation')
             .then((response) => {
                 this.reservationListResult = response.data;
                 console.log(response.data);
@@ -276,7 +278,7 @@ export default {
           formData.append('image', this.selectedImage);
           formData.append('ReservationReq', new Blob([JSON.stringify(this.reservation)], {type: "application/json"}))
           axios
-          .post('http://localhost:8082/login/api/reservation', formData,{
+          .post('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/login/api/reservation', formData,{
             headers:{
               'Content-Type' : 'multipart/form-data'
             }
@@ -300,24 +302,25 @@ export default {
           formData.append('image', this.selectedImage);
           formData.append('req', new Blob([JSON.stringify(UpdateReservationRequestDTO)], {type: "application/json"}));
           axios
-          .put('http://localhost:8082/login/api/reservation/' + reservationIdx, formData, {
+          .put('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/login/api/reservation/' + reservationIdx, formData, {
             headers: {
               'Content-Type' : 'multipart/form-data'
             }
           })
           .then(response => {
-            
+            alert("수정 성공하였습니다.");
             this.getReservationListData();
             
           })
           .catch(error => {
+            alert("수정 실패하였습니다.");
             console.log(error);
           })
         },
         deleteReservation(){
           const reservationIdx = this.reservationResult.reservationIdx;
           axios
-          .delete('http://localhost:8082/login/api/reservation/' + reservationIdx)
+          .delete('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/login/api/reservation/' + reservationIdx)
           .then(response => {
             this.getReservationListData();
             console.log(response);

@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     login() {
-      axios.post('http://localhost:8082/api/login', {
+      axios.post('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/api/login', {
         userId: this.userId,
         userPwd: this.userPwd
       })

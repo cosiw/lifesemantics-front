@@ -40,7 +40,7 @@
     created() {},
     methods: {
         save() {
-            axios.post('http://localhost:8082/api/join', this.result)
+            axios.post('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/api/join', this.result)
             .then((res) => {
                 console.log(res)
                 this.$router.push("/");
