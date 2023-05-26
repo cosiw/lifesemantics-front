@@ -184,7 +184,7 @@ export default {
         getHospitalListData($state) {
 
             axios
-            .get('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/login/api/hospital', {
+            .get('http://localhost:8082/login/api/hospital', {
                 params: {
                     page: this.currentPage,
                     size: this.pageSize,
@@ -193,9 +193,10 @@ export default {
             })
             .then((response) => {
                 const data = response.data.response.body.items.item;
+                console.log(data);
                 if(data.length > 0){
                   this.hospitalListResult = data;
-                  this.currentPage++;
+                  // this.currentPage++;
                   $state.loaded();
                 }else {
                   $state.complete();
