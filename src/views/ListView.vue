@@ -182,6 +182,7 @@ export default {
         })
       },
         getHospitalListData($state) {
+
             axios
             .get('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/login/api/hospital', {
                 params: {
@@ -193,7 +194,7 @@ export default {
             .then((response) => {
                 const data = response.data.response.body.items.item;
                 if(data.length > 0){
-                  this.hospitalListResult = this.hospitalListResult.concat(data);
+                  this.hospitalListResult = data;
                   this.currentPage++;
                   $state.loaded();
                 }else {
@@ -212,6 +213,7 @@ export default {
            this.showHospital = !this.showHospital;
            if(this.showReservation == true)
            this.showReservation = false;
+
            this.hospitalResult.hospitalIdx = row.hospitalIdx;
            this.hospitalResult.hospitalName = row.yadmNm;
            this.hospitalResult.hospitalAddr = row.addr;
@@ -220,6 +222,10 @@ export default {
            this.symptomImage = '';
            this.previewImage = '';
            this.selectedDate = '';
+           this.reservation.cellphone = '';
+           this.reservation.symptom = '';
+           this.reservationResult.cellphone = '';
+           this. reservationResult.symptom = '';
         },
         getReservationData(row){
             if(this.showReservation == false)
@@ -286,9 +292,11 @@ export default {
           .then(response => {
             this.previewImage = false;
             this.getReservationListData();
+            alert("예약 성공하였습니다.");
             console.log(response);
           })
           .catch(error => {
+            alert("예약 실패하였습니다.");
             console.log(error);
           })
         },
@@ -323,9 +331,11 @@ export default {
           .delete('https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/login/api/reservation/' + reservationIdx)
           .then(response => {
             this.getReservationListData();
+            alert('삭제 성공하였습니다.')
             console.log(response);
           })
           .catch(error => {
+            alert('삭제 실패하였습니다.')
             console.log(error);
           })
         }
