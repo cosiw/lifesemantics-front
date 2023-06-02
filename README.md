@@ -1,10 +1,5 @@
 # 병원 예약 서비스
 
-## 배포 주소
-프론트 서버 : https://web-lifesemantics-front-7e6o2cli373fzh.sel4.cloudtype.app/ <br>
-백엔드 서버 : https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/ <br>
-스웨거 : https://port-0-lifesemantics-7e6o2cli373fzh.sel4.cloudtype.app/swagger-ui/index.html#/<br>
-
 ## swagger 사용 방법
 1. api/login에서 userId와 userPwd를 넣고 Execute를 합니다.
 ![image](https://github.com/cosiw/lifesemantics-front/assets/91179733/cd6ba023-e724-4563-9083-350a0abce237)
